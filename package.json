@@ -49,6 +49,7 @@
     "mongoose": "^8.9.2",
     "morgan": "^1.10.0",
     "nanoid": "^3.3.8",
+    "onesignal-node": "^3.4.0",
     "otplib": "^12.0.1",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.0",

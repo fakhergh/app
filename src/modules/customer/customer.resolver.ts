@@ -1,5 +1,4 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { FileUpload, GraphQLUpload } from 'graphql-upload';
 
 import { HasRole } from '@/common/decorators/has-role.decorator';
 import { HasPermission } from '@/common/decorators/permission.decorator';
