@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { graphqlUploadExpress } from 'graphql-upload';
 import * as morgan from 'morgan';
 
-import { AppModule } from './app.module';
+import { AppModule } from '@/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
