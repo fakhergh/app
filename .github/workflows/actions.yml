@@ -1,0 +1,64 @@
+name: Deploy to Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CONTAINER_NAME: 'ghfakher/app'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      #- name: Install dependencies
+      #  run: npm ci
+
+      #- name: Create .env file
+      #  run: echo "ENV=${{ secrets.ENV }}" > .env
+
+      #- name: Test
+      #  run: npm run test:e2e
+
+      - name: Build
+        run: docker build -t $CONTAINER_NAME:latest .
+
+      - name: Push
+        run: |
+          echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+          docker push $CONTAINER_NAME:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build # This ensures the deploy job runs after the build job
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+      #- name: Create .env file from secrets
+      #  run: echo "${{ secrets.ENV }}" > .env
+      - name: Deploy to Elastic Beanstalk
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          echo "Deploying to Elastic Beanstalk"
+          echo "Install EB CLI"
+          pip install awsebcli
+          echo "Configure EB CLI"
+          eb init ${{ secrets.EB_APPLICATION_NAME }} --region ${{ secrets.AWS_REGION }} --platform docker
+          echo "Update the environment"
+          eb deploy ${{ secrets.EB_ENVIRONMENT_NAME }} --debug
