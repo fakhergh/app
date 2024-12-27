@@ -12,8 +12,6 @@ async function bootstrap() {
   const config = app.get<ConfigService>(ConfigService);
   const port = config.get<EnvironmentVariables['server']>('server').port;
 
-  Logger.log(config.get<EnvironmentVariables['server']>('server'), 'PORT');
-
   app.use(
     morgan('dev', {
       stream: {
