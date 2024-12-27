@@ -7,6 +7,8 @@ import { join } from 'path';
 
 import { authDirective, authDirectiveTransformer } from '@/graphql/directives/auth.directive';
 import { CategoryModule } from '@/modules/category/category.module';
+import { FileModule } from '@/modules/file/file.module';
+import { MediaModule } from '@/modules/media/media.module';
 import { PermissionModule } from '@/modules/permission/permission.module';
 
 @Plugin()
@@ -38,6 +40,8 @@ export class LoggingPlugin implements ApolloServerPlugin {
     }),
     PermissionModule,
     CategoryModule,
+    FileModule,
+    MediaModule,
   ],
   providers: [LoggingPlugin],
 })
