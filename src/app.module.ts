@@ -5,9 +5,10 @@ import { AppController } from '@/app.controller';
 import { ConfigModule } from '@/config/config.module';
 import { DatabaseModule } from '@/database/database.module';
 import { MigrationService } from '@/database/migration/migration.service';
+import { GraphqlModule } from '@/graphql/graphql.module';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, TerminusModule],
+  imports: [ConfigModule, DatabaseModule, TerminusModule, GraphqlModule],
   controllers: [AppController],
   providers: [MigrationService],
 })

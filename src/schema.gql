@@ -1,0 +1,246 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @auth(roles: [UserType]) on FIELD_DEFINITION
+
+input BooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+type Category {
+  active: Boolean!
+  createdAt: DateTime!
+  icon: String
+  id: ID!
+  name: CategoryName!
+  nameByLanguage(lang: Language): String!
+  path: String!
+  position: Float
+  rate: Float!
+  showOnTop: Boolean!
+  updatedAt: DateTime!
+}
+
+input CategoryFilterInput {
+  active: BooleanFilterInput
+  createdAt: DateFilterInput
+  id: IDFilterInput
+  parentId: IDFilterInput
+  parentPath: StringFilterInput
+  path: StringFilterInput
+  showOnTop: BooleanFilterInput
+  updatedAt: DateFilterInput
+}
+
+input CategoryInput {
+  filter: CategoryFilterInput
+}
+
+type CategoryName {
+  ar: String!
+  en: String!
+}
+
+input CategoryNameInput {
+  ar: String!
+  en: String!
+}
+
+input CreateCategoryInput {
+  icon: String!
+  name: CategoryNameInput!
+  parentId: ID
+}
+
+input CreatePermissionInput {
+  action: PermissionAction!
+  name: String!
+  type: PermissionType!
+}
+
+input DateFilterInput {
+  between: [DateTime!]
+  eq: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  ne: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeleteCategoryInput {
+  id: ID!
+}
+
+input DeletePermissionInput {
+  id: ID!
+}
+
+input DisableCategoryInput {
+  id: ID!
+}
+
+input DisableCategoryShowOnTopInput {
+  id: ID!
+}
+
+input DisablePermissionInput {
+  id: ID!
+}
+
+input EnableCategoryInput {
+  id: ID!
+}
+
+input EnableCategoryShowOnTopInput {
+  id: ID!
+}
+
+input EnablePermissionInput {
+  id: ID!
+}
+
+input IDFilterInput {
+  between: [String!]
+  eq: String
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  ne: String
+}
+
+enum Language {
+  AR
+  EN
+}
+
+type Mutation {
+  createCategory(input: CreateCategoryInput!): Category!
+  createPermission(input: CreatePermissionInput!): Permission!
+  deleteCategory(input: DeleteCategoryInput!): Category!
+  deletePermission(input: DeletePermissionInput!): Permission!
+  disableCategory(input: DisableCategoryInput!): Category!
+  disableCategoryShowOnTop(input: DisableCategoryShowOnTopInput!): Category!
+  disablePermission(input: DisablePermissionInput!): Permission!
+  enableCategory(input: EnableCategoryInput!): Category!
+  enableCategoryShowOnTop(input: EnableCategoryShowOnTopInput!): Category!
+  enablePermission(input: EnablePermissionInput!): Permission!
+  sortCategories(input: SortCategoriesInput!): Boolean!
+  updateCategory(input: UpdateCategoryInput!): Category!
+  updatePermission(input: UpdatePermissionInput!): Permission!
+}
+
+type Permission {
+  action: PermissionAction!
+  active: Boolean!
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  type: PermissionType!
+  updatedAt: DateTime!
+}
+
+enum PermissionAction {
+  CREATE
+  DELETE
+  READ
+  UPDATE
+}
+
+input PermissionActionFilterInput {
+  between: [PermissionAction!]
+  eq: PermissionAction
+  ne: PermissionAction
+}
+
+input PermissionFilterInput {
+  action: PermissionActionFilterInput
+  active: BooleanFilterInput
+  createdAt: DateFilterInput
+  id: IDFilterInput
+  name: StringFilterInput
+  type: PermissionTypeFilterInput
+  updatedAt: DateFilterInput
+}
+
+type PermissionPagination {
+  currentPage: Int!
+  hasNextPage: Boolean!
+  items: [Permission!]!
+  limit: Int!
+  page: Int!
+  totalCount: Int!
+  totalPages: Int!
+}
+
+input PermissionPaginationInput {
+  filter: PermissionFilterInput
+}
+
+enum PermissionType {
+  ADMIN
+  BOOKING
+  CATEGORY
+  CONVERSATION
+  CUSTOMER
+  FEEDBACK
+  FILE
+  NOTIFICATION
+  PERMISSION
+  ROLE
+  SERVICE_PROVIDER
+}
+
+input PermissionTypeFilterInput {
+  between: [PermissionType!]
+  eq: PermissionType
+  ne: PermissionType
+}
+
+type Query {
+  categories(input: CategoryInput): [Category!]!
+  categoriesCount: Int!
+  permissionTypes: [PermissionType!]!
+  permissionsPagination(input: PermissionPaginationInput, limit: Int = 10, page: Int = 1): PermissionPagination!
+}
+
+input SortCategoriesInput {
+  ids: [ID!]!
+}
+
+input StringFilterInput {
+  beginsWith: String
+  between: [String!]
+  contains: String
+  eq: String
+  ne: String
+  notContains: String
+}
+
+input UpdateCategoryInput {
+  active: Boolean
+  icon: String!
+  id: ID!
+  name: CategoryNameInput
+}
+
+input UpdatePermissionInput {
+  action: PermissionAction!
+  id: ID!
+  name: String!
+  type: PermissionType!
+}
+
+enum UserType {
+  ADMIN
+  CUSTOMER
+  SERVICE_PROVIDER
+}
