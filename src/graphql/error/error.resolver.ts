@@ -1,6 +1,6 @@
 import { Query, Resolver } from '@nestjs/graphql';
 
-import { ResponseError } from '@/graphql/error/error.type';
+import { ResponseError } from './error.type';
 
 @Resolver()
 export class ErrorResolver {

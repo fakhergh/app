@@ -10,27 +10,39 @@ import { Types } from 'mongoose';
 import * as base32 from 'thirty-two';
 import { ulid } from 'ulid';
 
-import { HasRole } from '@/common/decorators/has-role.decorator';
-import { HasPermission } from '@/common/decorators/permission.decorator';
-import { Public } from '@/common/decorators/public.decorator';
-import { CurrentUser } from '@/common/directives/current-user.directive';
-import { generate2faSecretQrCodeUrl, verifyTwoFactorOtp } from '@/common/utils/2fa';
-import { compareHash, hash } from '@/common/utils/bcrypt.util';
-import { decrypt, encrypt } from '@/common/utils/crypto';
-import { generateOtp } from '@/common/utils/otp';
-import { EnvironmentVariables } from '@/config/config.type';
-import { IpInfoDatasource } from '@/graphql/data-source/ip-info/ip-info.datasource';
-import { AdminNotFoundError, ResetPasswordInvalidInputError } from '@/modules/admin/admin.error';
-import { Admin } from '@/modules/admin/admin.schema';
-import { AdminService } from '@/modules/admin/admin.service';
+import { HasRole } from '../../common/decorators/has-role.decorator';
+import { HasPermission } from '../../common/decorators/permission.decorator';
+import { Public } from '../../common/decorators/public.decorator';
+import { CurrentUser } from '../../common/directives/current-user.directive';
+import { generate2faSecretQrCodeUrl, verifyTwoFactorOtp } from '../../common/utils/2fa';
+import { compareHash, hash } from '../../common/utils/bcrypt.util';
+import { decrypt, encrypt } from '../../common/utils/crypto';
+import { generateOtp } from '../../common/utils/otp';
+import { EnvironmentVariables } from '../../config/config.type';
+import { IpInfoDatasource } from '../../graphql/data-source/ip-info/ip-info.datasource';
+import { AdminNotFoundError, ResetPasswordInvalidInputError } from '../admin/admin.error';
+import { Admin } from '../admin/admin.schema';
+import { AdminService } from '../admin/admin.service';
+import { AuthProvider, RequestUser } from '../common/types/auth.type';
+import { PERMISSIONS } from '../common/types/permission.type';
+import { UserType } from '../common/types/user.type';
+import { CustomerDuplicationError, CustomerNotFoundError, CustomerVerificationError } from '../customer/customer.error';
+import { CustomerService } from '../customer/customer.service';
+import { ServiceProviderDuplicationError } from '../service-provider/service-provider.error';
+import { ServiceProviderService } from '../service-provider/service-provider.service';
+import { SessionService } from '../session/session.service';
+import {
+  CreateVerificationTokenData,
+  VerificationTokenService,
+} from '../verification-token/verification-token.service';
 import {
   InvalidCredentialsError,
   InvalidOTPError,
   TwoFactorAuthenticationDisabledError,
   TwoFactorAuthenticationEnabledError,
   UnauthenticatedError,
-} from '@/modules/auth/auth.error';
-import { AuthService } from '@/modules/auth/auth.service';
+} from './auth.error';
+import { AuthService } from './auth.service';
 import {
   AdminBasicSignIn,
   AdminChangePasswordInput,
@@ -65,23 +77,7 @@ import {
   ServiceProviderSignUp,
   ServiceProviderSignUpInput,
   SignInType,
-} from '@/modules/auth/auth.type';
-import { AuthProvider, RequestUser } from '@/modules/common/types/auth.type';
-import { PERMISSIONS } from '@/modules/common/types/permission.type';
-import { UserType } from '@/modules/common/types/user.type';
-import {
-  CustomerDuplicationError,
-  CustomerNotFoundError,
-  CustomerVerificationError,
-} from '@/modules/customer/customer.error';
-import { CustomerService } from '@/modules/customer/customer.service';
-import { ServiceProviderDuplicationError } from '@/modules/service-provider/service-provider.error';
-import { ServiceProviderService } from '@/modules/service-provider/service-provider.service';
-import { SessionService } from '@/modules/session/session.service';
-import {
-  CreateVerificationTokenData,
-  VerificationTokenService,
-} from '@/modules/verification-token/verification-token.service';
+} from './auth.type';
 
 class CreateSessionData {
   payload: JwtPayload;

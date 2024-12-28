@@ -1,5 +1,5 @@
-import { Environment } from '@/modules/common/types/env.type';
-import { MailTransport } from '@/modules/common/types/mailer.type';
+import { Environment } from '../modules/common/types/env.type';
+import { MailTransport } from '../modules/common/types/mailer.type';
 
 export type EnvironmentVariables = {
   server: {

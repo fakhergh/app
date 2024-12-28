@@ -2,16 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, SortOrder, Types } from 'mongoose';
 
-import { PaginationFactory } from '@/common/utils/pagination.util';
-import { Admin } from '@/modules/admin/admin.schema';
-import {
-  AdminPaginationInput,
-  CreateAdminInput,
-  UpdateAdminInput,
-  UpdateAdminProfileInput,
-} from '@/modules/admin/admin.type';
-import { FieldService, FieldType, FilterConfigOptions } from '@/modules/common/services/field.service';
-import { PaginationArgs } from '@/modules/common/types/query.type';
+import { PaginationFactory } from '../../common/utils/pagination.util';
+import { AdminPaginationInput, CreateAdminInput, UpdateAdminInput, UpdateAdminProfileInput } from '../admin/admin.type';
+import { FieldService, FieldType, FilterConfigOptions } from '../common/services/field.service';
+import { PaginationArgs } from '../common/types/query.type';
+import { Admin } from './admin.schema';
 
 const filterConfigOptions: FilterConfigOptions = {
   id: { type: FieldType.ID, overrideFieldName: '_id' },

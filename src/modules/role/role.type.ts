@@ -2,14 +2,9 @@ import { Field, ID, InputType, ObjectType, registerEnumType } from '@nestjs/grap
 import { Type } from 'class-transformer';
 import { IsMongoId, IsOptional, ValidateNested } from 'class-validator';
 
-import {
-  BooleanFilterInput,
-  DateFilterInput,
-  EnumFilterInput,
-  StringFilterInput,
-} from '@/modules/common/types/filter.type';
-import { createInput, createPagination } from '@/modules/common/types/query.type';
-import { Role, RoleType } from '@/modules/role/role.schema';
+import { BooleanFilterInput, DateFilterInput, EnumFilterInput, StringFilterInput } from '../common/types/filter.type';
+import { createInput, createPagination } from '../common/types/query.type';
+import { Role, RoleType } from '../role/role.schema';
 
 registerEnumType(RoleType, { name: 'RoleType' });
 

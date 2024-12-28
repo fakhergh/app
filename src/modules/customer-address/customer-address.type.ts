@@ -3,9 +3,9 @@ import { ID as Id } from '@nestjs/graphql/dist/scalars';
 import { Type } from 'class-transformer';
 import { IsMongoId, IsOptional, ValidateNested } from 'class-validator';
 
-import { IDFilterInput } from '@/modules/common/types/filter.type';
-import { createConnection, createInput } from '@/modules/common/types/query.type';
-import { CustomerAddress } from '@/modules/customer-address/customer-address.schema';
+import { IDFilterInput } from '../common/types/filter.type';
+import { createConnection, createInput } from '../common/types/query.type';
+import { CustomerAddress } from '../customer-address/customer-address.schema';
 
 @ObjectType()
 export class CustomerAddressConnection extends createConnection(CustomerAddress) {}

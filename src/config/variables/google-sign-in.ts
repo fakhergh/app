@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 
-import { EnvironmentVariables } from '@/config/config.type';
+import { EnvironmentVariables } from '../config.type';
 
 export default registerAs<EnvironmentVariables['googleSignIn']>('googleSignIn', () => ({
   androidClientId: process.env.GOOGLE_SIGN_IN_ANDROID_CLIENT_ID,

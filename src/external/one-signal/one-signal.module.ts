@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 
-import { OneSignalService } from '@/external/one-signal/one-signal.service';
+import { OneSignalService } from './one-signal.service';
 
 @Module({
   providers: [OneSignalService],

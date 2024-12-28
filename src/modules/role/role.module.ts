@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { PermissionModule } from '@/modules/permission/permission.module';
-import { RoleResolver } from '@/modules/role/role.resolver';
-import { Role, RoleSchema } from '@/modules/role/role.schema';
-import { RoleService } from '@/modules/role/role.service';
+import { PermissionModule } from '../permission/permission.module';
+import { RoleResolver } from '../role/role.resolver';
+import { Role, RoleSchema } from '../role/role.schema';
+import { RoleService } from '../role/role.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Role.name, schema: RoleSchema }]), PermissionModule],

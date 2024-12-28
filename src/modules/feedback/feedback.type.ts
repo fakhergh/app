@@ -2,14 +2,9 @@ import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { IsMongoId, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
 
-import {
-  BooleanFilterInput,
-  DateFilterInput,
-  IDFilterInput,
-  StringFilterInput,
-} from '@/modules/common/types/filter.type';
-import { createInput, createPagination } from '@/modules/common/types/query.type';
-import { Feedback } from '@/modules/feedback/feedback.schema';
+import { BooleanFilterInput, DateFilterInput, IDFilterInput, StringFilterInput } from '../common/types/filter.type';
+import { createInput, createPagination } from '../common/types/query.type';
+import { Feedback } from '../feedback/feedback.schema';
 
 @ObjectType()
 export class FeedbackPagination extends createPagination(Feedback) {}

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 
-import { EnvironmentVariables } from '@/config/config.type';
+import { EnvironmentVariables } from '../../config/config.type';
 
 @Injectable()
 export class AuthService {

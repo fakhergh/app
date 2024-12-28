@@ -1,12 +1,12 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { HasPermission } from '@/common/decorators/permission.decorator';
-import { NodeResolver } from '@/modules/common/resolvers/node.resolver';
-import { PERMISSIONS } from '@/modules/common/types/permission.type';
-import { PaginationArgs } from '@/modules/common/types/query.type';
-import { PermissionDuplicationError, PermissionNotFoundError } from '@/modules/permission/permission.error';
-import { Permission, PermissionAction, PermissionType } from '@/modules/permission/permission.schema';
-import { PermissionService } from '@/modules/permission/permission.service';
+import { HasPermission } from '../../common/decorators/permission.decorator';
+import { NodeResolver } from '../common/resolvers/node.resolver';
+import { PERMISSIONS } from '../common/types/permission.type';
+import { PaginationArgs } from '../common/types/query.type';
+import { PermissionDuplicationError, PermissionNotFoundError } from './permission.error';
+import { Permission, PermissionAction, PermissionType } from './permission.schema';
+import { PermissionService } from './permission.service';
 import {
   CreatePermissionInput,
   DeletePermissionInput,
@@ -15,7 +15,7 @@ import {
   PermissionPagination,
   PermissionPaginationInput,
   UpdatePermissionInput,
-} from '@/modules/permission/permission.type';
+} from './permission.type';
 
 @Resolver(() => Permission)
 export class PermissionResolver extends NodeResolver<Permission> {

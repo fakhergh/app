@@ -2,7 +2,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 
-import { LocationSchema } from '@/common/schemas/location.schema';
+import { LocationSchema } from '../../common/schemas/location.schema';
 
 @ObjectType()
 @Schema({ _id: false, versionKey: false })

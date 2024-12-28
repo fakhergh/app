@@ -2,9 +2,9 @@ import { Field, InputType, ObjectType, OmitType, registerEnumType } from '@nestj
 import { Type } from 'class-transformer';
 import { IsOptional, ValidateNested } from 'class-validator';
 
-import { BookingHistory, BookingHistoryStatusType } from '@/modules/booking-history/booking-history.schema';
-import { DateFilterInput, EnumFilterInput, IDFilterInput } from '@/modules/common/types/filter.type';
-import { createConnection, createInput } from '@/modules/common/types/query.type';
+import { BookingHistory, BookingHistoryStatusType } from '../booking-history/booking-history.schema';
+import { DateFilterInput, EnumFilterInput, IDFilterInput } from '../common/types/filter.type';
+import { createConnection, createInput } from '../common/types/query.type';
 
 registerEnumType(BookingHistoryStatusType, {
   name: 'BookingHistoryStatusType',

@@ -1,7 +1,7 @@
 import { registerAs } from '@nestjs/config';
 
-import { EnvironmentVariables } from '@/config/config.type';
-import { MailTransport } from '@/modules/common/types/mailer.type';
+import { MailTransport } from '../../modules/common/types/mailer.type';
+import { EnvironmentVariables } from '../config.type';
 
 export default registerAs<EnvironmentVariables['mailer']>('mailer', () => ({
   [MailTransport.NO_REPLY]: {

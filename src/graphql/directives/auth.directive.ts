@@ -3,7 +3,7 @@ import { defaultFieldResolver } from 'graphql/execution';
 import { DirectiveLocation } from 'graphql/language';
 import { GraphQLDirective, GraphQLEnumType, GraphQLList, GraphQLSchema } from 'graphql/type';
 
-import { UserType } from '@/modules/common/types/user.type';
+import { UserType } from '../../modules/common/types/user.type';
 
 export const authDirective = new GraphQLDirective({
   name: 'auth',

@@ -1,6 +1,6 @@
 import { RESTDataSource } from '@apollo/datasource-rest';
 
-import { IpInfo } from '@/graphql/data-source/ip-info/ip-info.type';
+import { IpInfo } from './ip-info.type';
 
 export class IpInfoDatasource extends RESTDataSource {
   constructor() {

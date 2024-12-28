@@ -5,13 +5,13 @@ import { Request } from 'express';
 import { Types } from 'mongoose';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-import { EnvironmentVariables } from '@/config/config.type';
-import { AdminService } from '@/modules/admin/admin.service';
-import { UnauthenticatedError } from '@/modules/auth/auth.error';
-import { JwtPayload } from '@/modules/auth/auth.type';
-import { UserType } from '@/modules/common/types/user.type';
-import { CustomerService } from '@/modules/customer/customer.service';
-import { SessionService } from '@/modules/session/session.service';
+import { EnvironmentVariables } from '../../../config/config.type';
+import { AdminService } from '../../admin/admin.service';
+import { UserType } from '../../common/types/user.type';
+import { CustomerService } from '../../customer/customer.service';
+import { SessionService } from '../../session/session.service';
+import { UnauthenticatedError } from '../auth.error';
+import { JwtPayload } from '../auth.type';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {

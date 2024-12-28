@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, SortOrder, Types } from 'mongoose';
 
-import { PaginationFactory } from '@/common/utils/pagination.util';
-import { FieldService, FieldType, FilterConfigOptions } from '@/modules/common/services/field.service';
-import { PaginationArgs } from '@/modules/common/types/query.type';
-import { Feedback } from '@/modules/feedback/feedback.schema';
-import { CreateFeedbackInput, FeedbackPaginationInput } from '@/modules/feedback/feedback.type';
+import { PaginationFactory } from '../../common/utils/pagination.util';
+import { FieldService, FieldType, FilterConfigOptions } from '../common/services/field.service';
+import { PaginationArgs } from '../common/types/query.type';
+import { Feedback } from './feedback.schema';
+import { CreateFeedbackInput, FeedbackPaginationInput } from './feedback.type';
 
 export interface CreateFeedbackData extends CreateFeedbackInput {
   customer?: Types.ObjectId;

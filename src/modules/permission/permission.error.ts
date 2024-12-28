@@ -1,6 +1,6 @@
 import { ApolloError } from 'apollo-server-express';
 
-import { ResponseError } from '@/graphql/error/error.type';
+import { ResponseError } from '../../graphql/error/error.type';
 
 export class PermissionNotFoundError extends ApolloError {
   constructor(message: string) {

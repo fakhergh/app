@@ -1,16 +1,16 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { HasRole } from '@/common/decorators/has-role.decorator';
-import { HasPermission } from '@/common/decorators/permission.decorator';
-import { CurrentUser } from '@/common/directives/current-user.directive';
-import { NodeResolver } from '@/modules/common/resolvers/node.resolver';
-import { RequestUser } from '@/modules/common/types/auth.type';
-import { PERMISSIONS } from '@/modules/common/types/permission.type';
-import { ConnectionArgs, PaginationArgs } from '@/modules/common/types/query.type';
-import { UserType } from '@/modules/common/types/user.type';
-import { ServiceProviderNotFoundError } from '@/modules/service-provider/service-provider.error';
-import { ServiceProvider } from '@/modules/service-provider/service-provider.schema';
-import { ServiceProviderService } from '@/modules/service-provider/service-provider.service';
+import { HasRole } from '../../common/decorators/has-role.decorator';
+import { HasPermission } from '../../common/decorators/permission.decorator';
+import { CurrentUser } from '../../common/directives/current-user.directive';
+import { NodeResolver } from '../common/resolvers/node.resolver';
+import { RequestUser } from '../common/types/auth.type';
+import { PERMISSIONS } from '../common/types/permission.type';
+import { ConnectionArgs, PaginationArgs } from '../common/types/query.type';
+import { UserType } from '../common/types/user.type';
+import { ServiceProviderNotFoundError } from './service-provider.error';
+import { ServiceProvider } from './service-provider.schema';
+import { ServiceProviderService } from './service-provider.service';
 import {
   DeleteServiceProviderInput,
   EnableServiceProviderInput,
@@ -19,7 +19,7 @@ import {
   ServiceProviderFilterInput,
   ServiceProviderPagination,
   ServiceProviderPaginationInput,
-} from '@/modules/service-provider/service-provider.type';
+} from './service-provider.type';
 
 @Resolver(() => ServiceProvider)
 export class ServiceProviderResolver extends NodeResolver<ServiceProvider> {

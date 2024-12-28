@@ -1,10 +1,10 @@
 import { Module, OnApplicationBootstrap } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { PermissionResolver } from '@/modules/permission/permission.resolver';
-import { Permission, PermissionSchema } from '@/modules/permission/permission.schema';
-import { PermissionSeeder } from '@/modules/permission/permission.seeder';
-import { PermissionService } from '@/modules/permission/permission.service';
+import { PermissionResolver } from './permission.resolver';
+import { Permission, PermissionSchema } from './permission.schema';
+import { PermissionSeeder } from './permission.seeder';
+import { PermissionService } from './permission.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Permission.name, schema: PermissionSchema }])],

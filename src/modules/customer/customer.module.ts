@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { CustomerResolver } from '@/modules/customer/customer.resolver';
-import { Customer, CustomerSchema } from '@/modules/customer/customer.schema';
-import { CustomerService } from '@/modules/customer/customer.service';
+import { CustomerResolver } from './customer.resolver';
+import { Customer, CustomerSchema } from './customer.schema';
+import { CustomerService } from './customer.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Customer.name, schema: CustomerSchema }])],

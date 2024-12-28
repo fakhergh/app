@@ -2,14 +2,9 @@ import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { IsArray, IsEmail, IsMongoId, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
 
-import { Admin } from '@/modules/admin/admin.schema';
-import {
-  BooleanFilterInput,
-  DateFilterInput,
-  IDFilterInput,
-  StringFilterInput,
-} from '@/modules/common/types/filter.type';
-import { createInput, createPagination } from '@/modules/common/types/query.type';
+import { Admin } from '../admin/admin.schema';
+import { BooleanFilterInput, DateFilterInput, IDFilterInput, StringFilterInput } from '../common/types/filter.type';
+import { createInput, createPagination } from '../common/types/query.type';
 
 @ObjectType()
 export class AdminPagination extends createPagination(Admin) {}

@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
-import { Session } from '@/modules/session/session.schema';
-import { CreateSessionDto } from '@/modules/session/session.type';
+import { Session } from '../session/session.schema';
+import { CreateSessionDto } from '../session/session.type';
 
 @Injectable()
 export class SessionService {

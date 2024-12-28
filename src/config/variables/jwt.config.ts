@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 
-import { EnvironmentVariables } from '@/config/config.type';
+import { EnvironmentVariables } from '../config.type';
 
 export default registerAs<EnvironmentVariables['jwt']>('jwt', () => ({
   accessTokenSecretKey: process.env.JWT_ACCESS_TOKEN_SECRET_KEY,

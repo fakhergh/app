@@ -2,12 +2,12 @@ import { Logger, Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { TerminusModule } from '@nestjs/terminus';
 
-import { AppController } from '@/app.controller';
-import { ConfigModule } from '@/config/config.module';
-import { DatabaseModule } from '@/database/database.module';
-import { MigrationService } from '@/database/migration/migration.service';
-import { GraphqlModule } from '@/graphql/graphql.module';
-import { JwtAuthGuard } from '@/modules/auth/guards/jwt.guard';
+import { AppController } from './app.controller';
+import { ConfigModule } from './config/config.module';
+import { DatabaseModule } from './database/database.module';
+import { MigrationService } from './database/migration/migration.service';
+import { GraphqlModule } from './graphql/graphql.module';
+import { JwtAuthGuard } from './modules/auth/guards/jwt.guard';
 
 @Module({
   imports: [ConfigModule, DatabaseModule, TerminusModule, GraphqlModule],

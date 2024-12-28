@@ -2,7 +2,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 
-import { AuthProvider } from '@/modules/common/types/auth.type';
+import { AuthProvider } from '../common/types/auth.type';
 
 @ObjectType()
 @Schema({ collection: 'customers', timestamps: true })

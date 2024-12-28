@@ -1,7 +1,7 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { v2 as cloudinary } from 'cloudinary';
 
-import { EnvironmentVariables } from '@/config/config.type';
+import { EnvironmentVariables } from '../../config/config.type';
 
 export const CloudinaryProvider = {
   imports: [ConfigModule],

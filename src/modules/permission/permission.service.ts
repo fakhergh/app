@@ -2,20 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, SortOrder, Types } from 'mongoose';
 
-import { PaginationFactory } from '@/common/utils/pagination.util';
-import { FieldService, FieldType, FilterConfigOptions } from '@/modules/common/services/field.service';
-import { PaginationArgs } from '@/modules/common/types/query.type';
-import {
-  Permission,
-  PermissionAction,
-  PermissionDocument,
-  PermissionType,
-} from '@/modules/permission/permission.schema';
-import {
-  CreatePermissionInput,
-  PermissionPaginationInput,
-  UpdatePermissionInput,
-} from '@/modules/permission/permission.type';
+import { PaginationFactory } from '../../common/utils/pagination.util';
+import { FieldService, FieldType, FilterConfigOptions } from '../common/services/field.service';
+import { PaginationArgs } from '../common/types/query.type';
+import { Permission, PermissionAction, PermissionDocument, PermissionType } from './permission.schema';
+import { CreatePermissionInput, PermissionPaginationInput, UpdatePermissionInput } from './permission.type';
 
 const filterConfigOptions: FilterConfigOptions = {
   id: { type: FieldType.ID, overrideFieldName: '_id' },

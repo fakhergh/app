@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { CustomerModule } from '@/modules/customer/customer.module';
-import { FeedbackResolver } from '@/modules/feedback/feedback.resolver';
-import { Feedback, FeedbackSchema } from '@/modules/feedback/feedback.schema';
-import { FeedbackService } from '@/modules/feedback/feedback.service';
-import { ServiceProviderModule } from '@/modules/service-provider/service-provider.module';
+import { CustomerModule } from '../customer/customer.module';
+import { FeedbackResolver } from '../feedback/feedback.resolver';
+import { Feedback, FeedbackSchema } from '../feedback/feedback.schema';
+import { FeedbackService } from '../feedback/feedback.service';
+import { ServiceProviderModule } from '../service-provider/service-provider.module';
 
 @Module({
   imports: [

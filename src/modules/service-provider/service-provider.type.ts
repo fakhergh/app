@@ -2,9 +2,9 @@ import { Field, ID as Id, InputType, ObjectType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { IsMongoId, IsOptional, ValidateNested } from 'class-validator';
 
-import { IDFilterInput, LocationFilterInput } from '@/modules/common/types/filter.type';
-import { createConnection, createInput, createPagination } from '@/modules/common/types/query.type';
-import { ServiceProvider } from '@/modules/service-provider/service-provider.schema';
+import { IDFilterInput, LocationFilterInput } from '../common/types/filter.type';
+import { createConnection, createInput, createPagination } from '../common/types/query.type';
+import { ServiceProvider } from './service-provider.schema';
 
 @ObjectType()
 export class ServiceProviderConnection extends createConnection(ServiceProvider) {}

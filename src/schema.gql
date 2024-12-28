@@ -262,6 +262,7 @@ type CustomerAddress {
   firstName: String!
   id: ID!
   lastName: String!
+  location: LocationSchema!
   phoneNumber: String!
   updatedAt: DateTime!
 }

@@ -2,8 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
 
-import { capitalize, lowercase } from '@/common/utils/formatter';
-import { Permission, PermissionAction, PermissionType } from '@/modules/permission/permission.schema';
+import { capitalize, lowercase } from '../../common/utils/formatter';
+import { Permission, PermissionAction, PermissionType } from './permission.schema';
 
 @Injectable()
 export class PermissionSeeder {

@@ -1,11 +1,11 @@
 import { createUnionType, Field, InputType, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { IsEmail, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 
-import { Admin } from '@/modules/admin/admin.schema';
-import { AuthProvider } from '@/modules/common/types/auth.type';
-import { UserType } from '@/modules/common/types/user.type';
-import { Customer } from '@/modules/customer/customer.schema';
-import { ServiceProvider } from '@/modules/service-provider/service-provider.schema';
+import { Admin } from '../admin/admin.schema';
+import { AuthProvider } from '../common/types/auth.type';
+import { UserType } from '../common/types/user.type';
+import { Customer } from '../customer/customer.schema';
+import { ServiceProvider } from '../service-provider/service-provider.schema';
 
 export enum SignInType {
   BASIC = 'BASIC',

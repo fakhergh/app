@@ -2,13 +2,8 @@ import { Field, ID as Id, InputType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { IsBoolean, IsMongoId, IsNotEmpty, IsOptional, IsString, Matches, ValidateNested } from 'class-validator';
 
-import {
-  BooleanFilterInput,
-  DateFilterInput,
-  IDFilterInput,
-  StringFilterInput,
-} from '@/modules/common/types/filter.type';
-import { createInput } from '@/modules/common/types/query.type';
+import { BooleanFilterInput, DateFilterInput, IDFilterInput, StringFilterInput } from '../common/types/filter.type';
+import { createInput } from '../common/types/query.type';
 
 @InputType()
 export class CategoryFilterInput {

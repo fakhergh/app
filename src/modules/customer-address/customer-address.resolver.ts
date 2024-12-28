@@ -1,15 +1,15 @@
 import { Inject } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { HasRole } from '@/common/decorators/has-role.decorator';
-import { CurrentUser } from '@/common/directives/current-user.directive';
-import { NodeResolver } from '@/modules/common/resolvers/node.resolver';
-import { RequestUser } from '@/modules/common/types/auth.type';
-import { ConnectionArgs } from '@/modules/common/types/query.type';
-import { UserType } from '@/modules/common/types/user.type';
-import { CustomerAddressNotFoundError } from '@/modules/customer-address/customer-address.error';
-import { CustomerAddress } from '@/modules/customer-address/customer-address.schema';
-import { CustomerAddressService } from '@/modules/customer-address/customer-address.service';
+import { HasRole } from '../../common/decorators/has-role.decorator';
+import { CurrentUser } from '../../common/directives/current-user.directive';
+import { NodeResolver } from '../common/resolvers/node.resolver';
+import { RequestUser } from '../common/types/auth.type';
+import { ConnectionArgs } from '../common/types/query.type';
+import { UserType } from '../common/types/user.type';
+import { CustomerAddressNotFoundError } from './customer-address.error';
+import { CustomerAddress } from './customer-address.schema';
+import { CustomerAddressService } from './customer-address.service';
 import {
   CreateCustomerAddressInput,
   CustomerAddressConnection,
@@ -17,7 +17,7 @@ import {
   DeleteCustomerAddressInput,
   SetDefaultCustomerAddressInput,
   UpdateCustomerAddressInput,
-} from '@/modules/customer-address/customer-address.type';
+} from './customer-address.type';
 
 @Resolver(() => CustomerAddress)
 export class CustomerAddressResolver extends NodeResolver<CustomerAddress> {

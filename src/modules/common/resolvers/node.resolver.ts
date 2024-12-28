@@ -1,7 +1,7 @@
 import { ResolveField, Resolver } from '@nestjs/graphql';
 import { Types } from 'mongoose';
 
-import { Node } from '@/modules/common/types/node.type';
+import { Node } from '../types/node.type';
 
 @Resolver(() => Node)
 export class NodeResolver<T extends { _id: Types.ObjectId }> {

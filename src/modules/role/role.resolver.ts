@@ -1,14 +1,14 @@
 import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 
-import { HasPermission } from '@/common/decorators/permission.decorator';
-import { NodeResolver } from '@/modules/common/resolvers/node.resolver';
-import { PERMISSIONS } from '@/modules/common/types/permission.type';
-import { PaginationArgs } from '@/modules/common/types/query.type';
-import { Permission } from '@/modules/permission/permission.schema';
-import { PermissionService } from '@/modules/permission/permission.service';
-import { RoleDuplicationError, RoleNotFoundError } from '@/modules/role/role.error';
-import { Role, RoleDocument } from '@/modules/role/role.schema';
-import { RoleService } from '@/modules/role/role.service';
+import { HasPermission } from '../../common/decorators/permission.decorator';
+import { NodeResolver } from '../common/resolvers/node.resolver';
+import { PERMISSIONS } from '../common/types/permission.type';
+import { PaginationArgs } from '../common/types/query.type';
+import { Permission } from '../permission/permission.schema';
+import { PermissionService } from '../permission/permission.service';
+import { RoleDuplicationError, RoleNotFoundError } from './role.error';
+import { Role, RoleDocument } from './role.schema';
+import { RoleService } from './role.service';
 import {
   CreateRoleInput,
   DeleteRoleInput,
@@ -17,7 +17,7 @@ import {
   RolePagination,
   RolePaginationInput,
   UpdateRoleInput,
-} from '@/modules/role/role.type';
+} from './role.type';
 
 @Resolver(() => Role)
 export class RoleResolver extends NodeResolver<Role> {

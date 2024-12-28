@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, SortOrder, Types } from 'mongoose';
 
-import { PaginationFactory } from '@/common/utils/pagination.util';
-import { FieldService, FieldType, FilterConfigOptions } from '@/modules/common/services/field.service';
-import { AuthProvider } from '@/modules/common/types/auth.type';
-import { PaginationArgs } from '@/modules/common/types/query.type';
-import { Customer } from '@/modules/customer/customer.schema';
-import { CustomerFilterInput, CustomerPaginationInput } from '@/modules/customer/customer.type';
+import { PaginationFactory } from '../../common/utils/pagination.util';
+import { FieldService, FieldType, FilterConfigOptions } from '../common/services/field.service';
+import { AuthProvider } from '../common/types/auth.type';
+import { PaginationArgs } from '../common/types/query.type';
+import { Customer } from './customer.schema';
+import { CustomerFilterInput, CustomerPaginationInput } from './customer.type';
 
 export class CreateCustomerData {
   initialName: string;

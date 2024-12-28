@@ -8,7 +8,7 @@ import {
   IntFilterInput,
   LocationFilterInput,
   StringFilterInput,
-} from '@/modules/common/types/filter.type';
+} from '../types/filter.type';
 
 interface Filter {
   apply(query: Record<string, any>): Record<string, any>;

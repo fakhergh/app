@@ -4,8 +4,8 @@ import { NestFactory } from '@nestjs/core';
 import { graphqlUploadExpress } from 'graphql-upload';
 import * as morgan from 'morgan';
 
-import { AppModule } from '@/app.module';
-import { EnvironmentVariables } from '@/config/config.type';
+import { AppModule } from './app.module';
+import { EnvironmentVariables } from './config/config.type';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

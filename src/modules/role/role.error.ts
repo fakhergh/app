@@ -1,6 +1,6 @@
 import { ApolloError } from 'apollo-server-express';
 
-import { ResponseError } from '@/graphql/error/error.type';
+import { ResponseError } from '../../graphql/error/error.type';
 
 export class RoleNotFoundError extends ApolloError {
   constructor(message: string) {

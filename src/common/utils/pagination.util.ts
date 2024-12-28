@@ -1,4 +1,4 @@
-import { Connection, Edge, Pagination } from '@/modules/common/types/query.type';
+import { Connection, Edge, Pagination } from '../../modules/common/types/query.type';
 
 export class PaginationFactory {
   static createCursorBasedPage<Schema>(

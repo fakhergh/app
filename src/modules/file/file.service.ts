@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { File, FileDocument } from '@/modules/file/file.schema';
-import { CreateAudioDto, CreateImageDto, CreateVideoDto } from '@/modules/file/file.type';
+import { File, FileDocument } from '../file/file.schema';
+import { CreateAudioDto, CreateImageDto, CreateVideoDto } from '../file/file.type';
 
 @Injectable()
 export class FileService {

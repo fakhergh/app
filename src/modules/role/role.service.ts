@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, SortOrder, Types } from 'mongoose';
 
-import { PaginationFactory } from '@/common/utils/pagination.util';
-import { FieldService, FieldType, FilterConfigOptions } from '@/modules/common/services/field.service';
-import { PaginationArgs } from '@/modules/common/types/query.type';
-import { Role, RoleDocument } from '@/modules/role/role.schema';
-import { CreateRoleInput, RolePaginationInput, UpdateRoleInput } from '@/modules/role/role.type';
+import { PaginationFactory } from '../../common/utils/pagination.util';
+import { FieldService, FieldType, FilterConfigOptions } from '../common/services/field.service';
+import { PaginationArgs } from '../common/types/query.type';
+import { Role, RoleDocument } from './role.schema';
+import { CreateRoleInput, RolePaginationInput, UpdateRoleInput } from './role.type';
 
 const filterConfigOptions: FilterConfigOptions = {
   id: { type: FieldType.ID, overrideFieldName: '_id' },

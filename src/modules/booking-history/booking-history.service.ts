@@ -2,14 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, SortOrder, Types } from 'mongoose';
 
-import { PaginationFactory } from '@/common/utils/pagination.util';
-import { BookingHistory, BookingHistoryStatusType } from '@/modules/booking-history/booking-history.schema';
-import {
-  BookingHistoryConnectionInput,
-  BookingHistoryFilterInput,
-} from '@/modules/booking-history/booking-history.type';
-import { FieldService, FieldType, FilterConfigOptions } from '@/modules/common/services/field.service';
-import { ConnectionArgs } from '@/modules/common/types/query.type';
+import { PaginationFactory } from '../../common/utils/pagination.util';
+import { FieldService, FieldType, FilterConfigOptions } from '../common/services/field.service';
+import { ConnectionArgs } from '../common/types/query.type';
+import { BookingHistory, BookingHistoryStatusType } from './booking-history.schema';
+import { BookingHistoryConnectionInput, BookingHistoryFilterInput } from './booking-history.type';
 
 export class CreateBookingHistoryData {
   bookingId: string | Types.ObjectId;

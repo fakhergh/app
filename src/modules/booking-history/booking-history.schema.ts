@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import GraphQLJSON from 'graphql-type-json';
 import mongoose, { HydratedDocument, Types } from 'mongoose';
 
-import { BaseSchema } from '@/modules/common/schemas/base.schema';
+import { BaseSchema } from '../common/schemas/base.schema';
 
 export enum BookingHistoryStatusType {
   PENDING = 'PENDING',

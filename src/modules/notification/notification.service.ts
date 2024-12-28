@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, SortOrder } from 'mongoose';
 
-import { PaginationFactory } from '@/common/utils/pagination.util';
-import { FieldService, FieldType, FilterConfigOptions } from '@/modules/common/services/field.service';
-import { ConnectionArgs } from '@/modules/common/types/query.type';
-import { Notification } from '@/modules/notification/notification.schema';
+import { PaginationFactory } from '../../common/utils/pagination.util';
+import { FieldService, FieldType, FilterConfigOptions } from '../common/services/field.service';
+import { ConnectionArgs } from '../common/types/query.type';
+import { Notification } from './notification.schema';
 
 const filterConfigOptions: FilterConfigOptions = {
   id: { type: FieldType.ID, overrideFieldName: '_id' },

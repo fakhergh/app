@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 
-import { ErrorResolver } from '@/graphql/error/error.resolver';
+import { ErrorResolver } from './error.resolver';
 
 @Module({
   providers: [ErrorResolver],

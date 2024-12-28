@@ -4,8 +4,8 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
 import { Observable } from 'rxjs';
 
-import { IS_PUBLIC_KEY } from '@/common/decorators/public.decorator';
-import { UnauthenticatedError } from '@/modules/auth/auth.error';
+import { IS_PUBLIC_KEY } from '../../../common/decorators/public.decorator';
+import { UnauthenticatedError } from '../auth.error';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {

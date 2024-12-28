@@ -2,12 +2,19 @@ import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/gra
 import { DateTime } from 'luxon';
 import { ulid } from 'ulid';
 
-import { HasRole } from '@/common/decorators/has-role.decorator';
-import { HasPermission } from '@/common/decorators/permission.decorator';
-import { CurrentUser } from '@/common/directives/current-user.directive';
-import { AdminDuplicationError, AdminNotFoundError } from '@/modules/admin/admin.error';
-import { Admin, AdminDocument } from '@/modules/admin/admin.schema';
-import { AdminService } from '@/modules/admin/admin.service';
+import { HasRole } from '../../common/decorators/has-role.decorator';
+import { HasPermission } from '../../common/decorators/permission.decorator';
+import { CurrentUser } from '../../common/directives/current-user.directive';
+import { NodeResolver } from '../common/resolvers/node.resolver';
+import type { RequestUser } from '../common/types/auth.type';
+import { PERMISSIONS } from '../common/types/permission.type';
+import { PaginationArgs } from '../common/types/query.type';
+import { UserType } from '../common/types/user.type';
+import { Role } from '../role/role.schema';
+import { RoleService } from '../role/role.service';
+import { AdminDuplicationError, AdminNotFoundError } from './admin.error';
+import { Admin, AdminDocument } from './admin.schema';
+import { AdminService } from './admin.service';
 import {
   AdminPagination,
   AdminPaginationInput,
@@ -18,14 +25,7 @@ import {
   SendAdminResetPasswordLinkInput,
   UpdateAdminInput,
   UpdateAdminProfileInput,
-} from '@/modules/admin/admin.type';
-import { NodeResolver } from '@/modules/common/resolvers/node.resolver';
-import type { RequestUser } from '@/modules/common/types/auth.type';
-import { PERMISSIONS } from '@/modules/common/types/permission.type';
-import { PaginationArgs } from '@/modules/common/types/query.type';
-import { UserType } from '@/modules/common/types/user.type';
-import { Role } from '@/modules/role/role.schema';
-import { RoleService } from '@/modules/role/role.service';
+} from './admin.type';
 
 @Resolver(() => Admin)
 export class AdminResolver extends NodeResolver<Admin> {

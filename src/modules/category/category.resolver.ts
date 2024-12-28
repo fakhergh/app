@@ -1,12 +1,17 @@
 import { Args, Int, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import slugify from 'slugify';
 
-import { HasRole } from '@/common/decorators/has-role.decorator';
-import { HasPermission } from '@/common/decorators/permission.decorator';
-import { CurrentUser } from '@/common/directives/current-user.directive';
-import { CategoryDuplicationError, CategoryNotFoundError } from '@/modules/category/category.error';
-import { Category } from '@/modules/category/category.schema';
-import { CategoryService } from '@/modules/category/category.service';
+import { HasRole } from '../../common/decorators/has-role.decorator';
+import { HasPermission } from '../../common/decorators/permission.decorator';
+import { CurrentUser } from '../../common/directives/current-user.directive';
+import { NodeResolver } from '../common/resolvers/node.resolver';
+import { RequestUser } from '../common/types/auth.type';
+import { Language } from '../common/types/language';
+import { PERMISSIONS } from '../common/types/permission.type';
+import { UserType } from '../common/types/user.type';
+import { CategoryDuplicationError, CategoryNotFoundError } from './category.error';
+import { Category } from './category.schema';
+import { CategoryService } from './category.service';
 import {
   CategoryInput,
   CreateCategoryInput,
@@ -17,12 +22,7 @@ import {
   EnableCategoryShowOnTopInput,
   SortCategoriesInput,
   UpdateCategoryInput,
-} from '@/modules/category/category.type';
-import { NodeResolver } from '@/modules/common/resolvers/node.resolver';
-import { RequestUser } from '@/modules/common/types/auth.type';
-import { Language } from '@/modules/common/types/language';
-import { PERMISSIONS } from '@/modules/common/types/permission.type';
-import { UserType } from '@/modules/common/types/user.type';
+} from './category.type';
 
 @Resolver(() => Category)
 export class CategoryResolver extends NodeResolver<Category> {

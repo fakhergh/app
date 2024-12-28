@@ -2,14 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, SortOrder, Types } from 'mongoose';
 
-import { Category } from '@/modules/category/category.schema';
-import {
-  CategoryFilterInput,
-  CategoryInput,
-  CreateCategoryInput,
-  UpdateCategoryInput,
-} from '@/modules/category/category.type';
-import { FieldService, FieldType, FilterConfigOptions } from '@/modules/common/services/field.service';
+import { FieldService, FieldType, FilterConfigOptions } from '../common/services/field.service';
+import { Category } from './category.schema';
+import { CategoryFilterInput, CategoryInput, CreateCategoryInput, UpdateCategoryInput } from './category.type';
 
 const filterConfigOptions: FilterConfigOptions = {
   id: { type: FieldType.ID, overrideFieldName: '_id' },

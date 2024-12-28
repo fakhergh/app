@@ -11,7 +11,7 @@ import {
   validateSync,
 } from 'class-validator';
 
-import { Environment } from '@/modules/common/types/env.type';
+import { Environment } from '../modules/common/types/env.type';
 
 class EnvironmentVariablesValidation {
   @IsOptional()

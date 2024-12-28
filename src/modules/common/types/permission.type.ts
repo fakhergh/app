@@ -1,4 +1,4 @@
-import { PermissionAction, PermissionType } from '@/modules/permission/permission.schema';
+import { PermissionAction, PermissionType } from '../../permission/permission.schema';
 
 export const PERMISSIONS: Partial<Record<PermissionType, Partial<Record<PermissionAction, string>>>> = Object.keys(
   PermissionType,

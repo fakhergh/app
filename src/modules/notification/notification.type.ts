@@ -1,7 +1,7 @@
 import { ObjectType, registerEnumType } from '@nestjs/graphql';
 
-import { createConnection } from '@/modules/common/types/query.type';
-import { Notification, NotificationAction } from '@/modules/notification/notification.schema';
+import { createConnection } from '../common/types/query.type';
+import { Notification, NotificationAction } from '../notification/notification.schema';
 
 registerEnumType(NotificationAction, { name: 'NotificationAction' });
 

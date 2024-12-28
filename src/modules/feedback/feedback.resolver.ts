@@ -1,16 +1,19 @@
 import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 
-import { HasRole } from '@/common/decorators/has-role.decorator';
-import { HasPermission } from '@/common/decorators/permission.decorator';
-import { CurrentUser } from '@/common/directives/current-user.directive';
-import { NodeResolver } from '@/modules/common/resolvers/node.resolver';
-import { RequestUser } from '@/modules/common/types/auth.type';
-import { PERMISSIONS } from '@/modules/common/types/permission.type';
-import { PaginationArgs } from '@/modules/common/types/query.type';
-import { UserType } from '@/modules/common/types/user.type';
-import { Customer } from '@/modules/customer/customer.schema';
-import { CustomerService } from '@/modules/customer/customer.service';
-import { Feedback, FeedbackDocument } from '@/modules/feedback/feedback.schema';
+import { HasRole } from '../../common/decorators/has-role.decorator';
+import { HasPermission } from '../../common/decorators/permission.decorator';
+import { CurrentUser } from '../../common/directives/current-user.directive';
+import { NodeResolver } from '../common/resolvers/node.resolver';
+import { RequestUser } from '../common/types/auth.type';
+import { PERMISSIONS } from '../common/types/permission.type';
+import { PaginationArgs } from '../common/types/query.type';
+import { UserType } from '../common/types/user.type';
+import { Customer } from '../customer/customer.schema';
+import { CustomerService } from '../customer/customer.service';
+import { ServiceProvider } from '../service-provider/service-provider.schema';
+import { ServiceProviderService } from '../service-provider/service-provider.service';
+import { Feedback, FeedbackDocument } from './feedback.schema';
+import { CreateFeedbackData, FeedbackService } from './feedback.service';
 import {
   CreateFeedbackInput,
   DeleteFeedbackInput,
@@ -18,11 +21,7 @@ import {
   FeedbackPaginationInput,
   PinFeedbackInput,
   UnPinFeedbackInput,
-} from '@/modules/feedback/feedback.type';
-import { ServiceProvider } from '@/modules/service-provider/service-provider.schema';
-import { ServiceProviderService } from '@/modules/service-provider/service-provider.service';
-
-import { CreateFeedbackData, FeedbackService } from './feedback.service';
+} from './feedback.type';
 
 @Resolver(() => Feedback)
 export class FeedbackResolver extends NodeResolver<Feedback> {

@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 
-import { UserType } from '@/modules/common/types/user.type';
+import { UserType } from '../common/types/user.type';
 
 export class CreateSessionDto {
   accessToken: string;

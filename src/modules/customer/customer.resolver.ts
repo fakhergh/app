@@ -1,22 +1,22 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { HasRole } from '@/common/decorators/has-role.decorator';
-import { HasPermission } from '@/common/decorators/permission.decorator';
-import { CurrentUser } from '@/common/directives/current-user.directive';
-import { NodeResolver } from '@/modules/common/resolvers/node.resolver';
-import { PERMISSIONS } from '@/modules/common/types/permission.type';
-import { PaginationArgs } from '@/modules/common/types/query.type';
-import { UserType } from '@/modules/common/types/user.type';
-import { CustomerNotFoundError } from '@/modules/customer/customer.error';
-import { Customer } from '@/modules/customer/customer.schema';
-import { CustomerService } from '@/modules/customer/customer.service';
+import { HasRole } from '../../common/decorators/has-role.decorator';
+import { HasPermission } from '../../common/decorators/permission.decorator';
+import { CurrentUser } from '../../common/directives/current-user.directive';
+import { NodeResolver } from '../common/resolvers/node.resolver';
+import { PERMISSIONS } from '../common/types/permission.type';
+import { PaginationArgs } from '../common/types/query.type';
+import { UserType } from '../common/types/user.type';
+import { CustomerNotFoundError } from './customer.error';
+import { Customer } from './customer.schema';
+import { CustomerService } from './customer.service';
 import {
   CustomerFilterInput,
   CustomerPagination,
   CustomerPaginationInput,
   DisableCustomerInput,
   EnableCustomerInput,
-} from '@/modules/customer/customer.type';
+} from './customer.type';
 
 @Resolver(() => Customer)
 export class CustomerResolver extends NodeResolver<Customer> {

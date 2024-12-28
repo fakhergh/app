@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
-import { UserType } from '@/modules/common/types/user.type';
-import { VerificationToken } from '@/modules/verification-token/verification-token.schema';
+import { UserType } from '../common/types/user.type';
+import { VerificationToken } from '../verification-token/verification-token.schema';
 
 export class CreateVerificationTokenData {
   token: string;

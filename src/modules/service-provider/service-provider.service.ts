@@ -3,15 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { get } from 'lodash';
 import { FilterQuery, Model, PipelineStage, SortOrder } from 'mongoose';
 
-import { PaginationFactory } from '@/common/utils/pagination.util';
-import { ServiceProviderSignUpInput } from '@/modules/auth/auth.type';
-import { FieldService, FieldType, FilterConfigOptions } from '@/modules/common/services/field.service';
-import { ConnectionArgs, PaginationArgs } from '@/modules/common/types/query.type';
-import { ServiceProvider } from '@/modules/service-provider/service-provider.schema';
-import {
-  ServiceProviderConnectionInput,
-  ServiceProviderFilterInput,
-} from '@/modules/service-provider/service-provider.type';
+import { PaginationFactory } from '../../common/utils/pagination.util';
+import { ServiceProviderSignUpInput } from '../auth/auth.type';
+import { FieldService, FieldType, FilterConfigOptions } from '../common/services/field.service';
+import { ConnectionArgs, PaginationArgs } from '../common/types/query.type';
+import { ServiceProvider } from './service-provider.schema';
+import { ServiceProviderConnectionInput, ServiceProviderFilterInput } from './service-provider.type';
 
 const filterConfigOptions: FilterConfigOptions = {
   id: { type: FieldType.ID, overrideFieldName: '_id' },

@@ -1,9 +1,9 @@
 import { ResolveField, Resolver, Root } from '@nestjs/graphql';
 
-import { Category } from '@/modules/category/category.schema';
-import { CategoryService } from '@/modules/category/category.service';
-import { File } from '@/modules/file/file.schema';
-import { ProfileDetail } from '@/modules/service-provider/service-provider.schema';
+import { Category } from '../../category/category.schema';
+import { CategoryService } from '../../category/category.service';
+import { File } from '../../file/file.schema';
+import { ProfileDetail } from '../service-provider.schema';
 
 @Resolver(() => ProfileDetail)
 export class ProfileDetailResolver {

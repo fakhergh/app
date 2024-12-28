@@ -2,7 +2,7 @@ import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, Types } from 'mongoose';
 
-//import { LocationSchema } from '@/common/schemas/location.schema';
+import { LocationSchema } from '../../common/schemas/location.schema';
 
 @ObjectType()
 @Schema({ collection: 'customer_addresses', timestamps: true })
@@ -16,9 +16,9 @@ export class CustomerAddress {
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId })
   customerId: Types.ObjectId;
 
-  /*@Field()
+  @Field()
   @Prop({ required: true })
-  location?: LocationSchema;*/
+  location?: LocationSchema;
 
   @Field()
   @Prop({ required: true })

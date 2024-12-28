@@ -8,9 +8,9 @@ import {
   EnumFilterInput,
   IDFilterInput,
   StringFilterInput,
-} from '@/modules/common/types/filter.type';
-import { createInput, createPagination } from '@/modules/common/types/query.type';
-import { Permission, PermissionAction, PermissionType } from '@/modules/permission/permission.schema';
+} from '../common/types/filter.type';
+import { createInput, createPagination } from '../common/types/query.type';
+import { Permission, PermissionAction, PermissionType } from '../permission/permission.schema';
 
 registerEnumType(PermissionAction, { name: 'PermissionAction' });
 

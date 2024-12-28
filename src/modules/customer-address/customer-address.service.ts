@@ -3,14 +3,11 @@ import { OmitType, PartialType } from '@nestjs/mapped-types';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, SortOrder, Types } from 'mongoose';
 
-import { PaginationFactory } from '@/common/utils/pagination.util';
-import { FieldService, FieldType } from '@/modules/common/services/field.service';
-import { ConnectionArgs } from '@/modules/common/types/query.type';
-import { CustomerAddress } from '@/modules/customer-address/customer-address.schema';
-import {
-  CustomerAddressConnectionInput,
-  CustomerAddressFilterInput,
-} from '@/modules/customer-address/customer-address.type';
+import { PaginationFactory } from '../../common/utils/pagination.util';
+import { FieldService, FieldType } from '../common/services/field.service';
+import { ConnectionArgs } from '../common/types/query.type';
+import { CustomerAddressConnectionInput, CustomerAddressFilterInput } from '../customer-address/customer-address.type';
+import { CustomerAddress } from './customer-address.schema';
 
 export class CreateCustomerAddressData {
   customerId: Types.ObjectId;
