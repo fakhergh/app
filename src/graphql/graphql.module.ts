@@ -8,6 +8,7 @@ import { join } from 'path';
 import { authDirective, authDirectiveTransformer } from '@/graphql/directives/auth.directive';
 import { AdminModule } from '@/modules/admin/admin.module';
 import { AuthModule } from '@/modules/auth/auth.module';
+import { BookingHistoryModule } from '@/modules/booking-history/booking-history.module';
 import { CategoryModule } from '@/modules/category/category.module';
 import { CustomerModule } from '@/modules/customer/customer.module';
 import { PermissionModule } from '@/modules/permission/permission.module';
@@ -45,6 +46,7 @@ export class LoggingPlugin implements ApolloServerPlugin {
     }),
     AdminModule,
     AuthModule,
+    BookingHistoryModule,
     CategoryModule,
     CustomerModule,
     PermissionModule,
