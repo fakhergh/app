@@ -111,6 +111,52 @@ input AdminVerifySignInInput {
   token: String!
 }
 
+type BookingHistory {
+  createdAt: DateTime!
+  id: ID!
+  metadata: JSON
+  status: BookingHistoryStatusType!
+  updatedAt: DateTime!
+}
+
+type BookingHistoryConnection {
+  edges: [BookingHistoryEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input BookingHistoryConnectionInput {
+  filter: BookingHistoryFilterInput
+}
+
+type BookingHistoryEdge {
+  cursor: String!
+  node: BookingHistory!
+}
+
+input BookingHistoryFilterInput {
+  bookingId: IDFilterInput
+  createdAt: DateFilterInput
+  id: IDFilterInput
+  status: BookingHistoryStatusInput
+  updatedAt: DateFilterInput
+}
+
+input BookingHistoryStatusInput {
+  between: [BookingHistoryStatusType!]
+  eq: BookingHistoryStatusType
+  ne: BookingHistoryStatusType
+}
+
+enum BookingHistoryStatusType {
+  ACCEPTED
+  CANCELED
+  COMPLETED
+  PENDING
+  RESCHEDULED
+  UPDATED
+}
+
 input BooleanFilterInput {
   eq: Boolean
   ne: Boolean
@@ -167,6 +213,23 @@ input CreateCategoryInput {
   parentId: ID
 }
 
+input CreateCustomerAddressInput {
+  address: String!
+  addressDetails: String!
+  city: String!
+  country: String!
+  firstName: String!
+  lastName: String!
+  latitude: Float!
+  longitude: Float!
+  phoneNumber: String!
+}
+
+input CreateFeedbackInput {
+  description: String!
+  title: String!
+}
+
 input CreatePermissionInput {
   action: PermissionAction!
   name: String!
@@ -187,6 +250,39 @@ type Customer {
   name: String!
   updatedAt: DateTime!
   verified: Boolean!
+}
+
+type CustomerAddress {
+  addressDetails: String!
+  city: String!
+  country: String!
+  createdAt: DateTime!
+  customerId: ID!
+  default: Boolean!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  phoneNumber: String!
+  updatedAt: DateTime!
+}
+
+type CustomerAddressConnection {
+  edges: [CustomerAddressEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input CustomerAddressConnectionInput {
+  filter: CustomerAddressFilterInput
+}
+
+type CustomerAddressEdge {
+  cursor: String!
+  node: CustomerAddress!
+}
+
+input CustomerAddressFilterInput {
+  id: IDFilterInput
 }
 
 input CustomerAppleSignInInput {
@@ -302,6 +398,14 @@ input DeleteCategoryInput {
   id: ID!
 }
 
+input DeleteCustomerAddressInput {
+  id: ID!
+}
+
+input DeleteFeedbackInput {
+  id: String!
+}
+
 input DeletePermissionInput {
   id: ID!
 }
@@ -366,6 +470,40 @@ input EnableServiceProviderInput {
   id: ID!
 }
 
+type Feedback {
+  createdAt: DateTime!
+  customer: Customer
+  description: String!
+  id: ID!
+  pinned: Boolean!
+  serviceProvider: ServiceProvider
+  title: String!
+  updatedAt: DateTime!
+}
+
+input FeedbackFilterInput {
+  createdAt: DateFilterInput
+  customer: StringFilterInput
+  id: IDFilterInput
+  pinned: BooleanFilterInput
+  serviceProvider: StringFilterInput
+  updatedAt: DateFilterInput
+}
+
+type FeedbackPagination {
+  currentPage: Int!
+  hasNextPage: Boolean!
+  items: [Feedback!]!
+  limit: Int!
+  page: Int!
+  totalCount: Int!
+  totalPages: Int!
+}
+
+input FeedbackPaginationInput {
+  filter: FeedbackFilterInput
+}
+
 type File {
   createdAt: DateTime!
   duration: Float
@@ -388,6 +526,11 @@ input IDFilterInput {
   lte: String
   ne: String
 }
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
 
 enum Language {
   AR
@@ -421,6 +564,8 @@ type Mutation {
   adminVerifySignIn(input: AdminVerifySignInInput!): AdminVerifySignIn!
   createAdmin(input: CreateAdminInput!): Admin!
   createCategory(input: CreateCategoryInput!): Category!
+  createCustomerAddress(input: CreateCustomerAddressInput!): CustomerAddress!
+  createFeedback(input: CreateFeedbackInput!): Feedback!
   createPermission(input: CreatePermissionInput!): Permission!
   createRole(input: CreateRoleInput!): Role!
   customerAppleSignIn(input: CustomerAppleSignInInput!): CustomerSignIn!
@@ -433,6 +578,8 @@ type Mutation {
   customerVerifySignUp(input: CustomerVerifySignUpInput!): Boolean!
   deleteAdmin(input: DeleteAdminInput!): Admin!
   deleteCategory(input: DeleteCategoryInput!): Category!
+  deleteCustomerAddress(input: DeleteCustomerAddressInput!): CustomerAddress!
+  deleteFeedback(input: DeleteFeedbackInput!): Feedback!
   deletePermission(input: DeletePermissionInput!): Permission!
   deleteRole(input: DeleteRoleInput!): Role!
   deleteServiceProvider(input: DeleteServiceProviderInput!): ServiceProvider!
@@ -450,14 +597,44 @@ type Mutation {
   enablePermission(input: EnablePermissionInput!): Permission!
   enableRole(input: EnableRoleInput!): Role!
   enableServiceProvider(input: EnableServiceProviderInput!): ServiceProvider!
+  pinFeedback(input: PinFeedbackInput!): Feedback!
   sendAdminResetPasswordLink(input: SendAdminResetPasswordLinkInput!): Admin!
   serviceProviderSignIn(input: ServiceProviderSignInInput!): ServiceProviderSignIn!
   serviceProviderSignUp(input: ServiceProviderSignUpInput!): ServiceProviderSignUp!
+  setDefaultCustomerAddress(input: SetDefaultCustomerAddressInput!): CustomerAddress!
   sortCategories(input: SortCategoriesInput!): Boolean!
+  unpinFeedback(input: UnPinFeedbackInput!): Feedback!
   updateAdmin(input: UpdateAdminInput!): Admin!
   updateCategory(input: UpdateCategoryInput!): Category!
+  updateCustomerAddress(input: UpdateCustomerAddressInput!): CustomerAddress!
   updatePermission(input: UpdatePermissionInput!): Permission!
   updateRole(input: UpdateRoleInput!): Role!
+}
+
+type Notification {
+  action: NotificationAction!
+  createdAt: String!
+  id: ID!
+  metadata: JSON
+  updatedAt: String!
+}
+
+enum NotificationAction {
+  BOOKING_CANCELED
+  BOOKING_CREATED
+  BOOKING_RESCHEDULED
+  BOOKING_UPDATED
+}
+
+type NotificationConnection {
+  edges: [NotificationEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type NotificationEdge {
+  cursor: String!
+  node: Notification!
 }
 
 type OperatingDay {
@@ -552,6 +729,10 @@ input PermissionTypeFilterInput {
   ne: PermissionType
 }
 
+input PinFeedbackInput {
+  id: String!
+}
+
 type ProfileDetail {
   address: String
   bio: String
@@ -566,12 +747,17 @@ type ProfileDetail {
 type Query {
   adminMe: Admin!
   adminsPagination(input: AdminPaginationInput, limit: Int = 10, page: Int = 1): AdminPagination!
+  bookingHistoriesConnection(after: String, first: Int = 10, input: BookingHistoryConnectionInput): BookingHistoryConnection!
   categories(input: CategoryInput): [Category!]!
   categoriesCount: Int!
   customer(input: CustomerFilterInput): Customer
+  customerAddressesConnection(after: String, first: Int = 10, input: CustomerAddressConnectionInput): CustomerAddressConnection!
   customerProfile: Customer!
   customersCount: Int!
   customersPagination(input: CustomerPaginationInput, limit: Int = 10, page: Int = 1): CustomerPagination!
+  defaultCustomerAddress: CustomerAddress
+  feedbacksPagination(input: FeedbackPaginationInput, limit: Int = 10, page: Int = 1): FeedbackPagination!
+  notificationsConnection(after: String, first: Int = 10): NotificationConnection!
   permissionTypes: [PermissionType!]!
   permissionsPagination(input: PermissionPaginationInput, limit: Int = 10, page: Int = 1): PermissionPagination!
   rolesPagination(input: RolePaginationInput, limit: Int = 10, page: Int = 1): RolePagination!
@@ -705,6 +891,10 @@ input ServiceProviderSignUpInput {
   password: String!
 }
 
+input SetDefaultCustomerAddressInput {
+  id: ID!
+}
+
 enum SignInType {
   BASIC
   TWO_FACTOR
@@ -723,6 +913,10 @@ input StringFilterInput {
   notContains: String
 }
 
+input UnPinFeedbackInput {
+  id: String!
+}
+
 input UpdateAdminInput {
   id: String!
   name: String!
@@ -738,6 +932,19 @@ input UpdateCategoryInput {
   icon: String!
   id: ID!
   name: CategoryNameInput
+}
+
+input UpdateCustomerAddressInput {
+  address: String!
+  addressDetails: String!
+  city: String!
+  country: String!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  latitude: Float!
+  longitude: Float!
+  phoneNumber: String!
 }
 
 input UpdatePermissionInput {
