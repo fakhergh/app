@@ -1,11 +1,10 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { ID as Id } from '@nestjs/graphql/dist/scalars';
+import { Field, ID as Id, InputType, ObjectType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { IsMongoId, IsOptional, ValidateNested } from 'class-validator';
 
 import { IDFilterInput } from '../common/types/filter.type';
 import { createConnection, createInput } from '../common/types/query.type';
-import { CustomerAddress } from '../customer-address/customer-address.schema';
+import { CustomerAddress } from './customer-address.schema';
 
 @ObjectType()
 export class CustomerAddressConnection extends createConnection(CustomerAddress) {}

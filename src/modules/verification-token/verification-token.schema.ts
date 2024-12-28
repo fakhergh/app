@@ -9,14 +9,13 @@ import { UserType } from '../common/types/user.type';
 export class VerificationToken {
   _id: Types.ObjectId;
 
-  @Field()
+  @Field(() => ID)
   id: string;
 
   @Field()
   @Prop({ required: true })
   token: string;
 
-  @Field(() => ID)
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId })
   userId: Types.ObjectId;
 

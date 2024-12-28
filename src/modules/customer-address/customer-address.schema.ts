@@ -12,11 +12,10 @@ export class CustomerAddress {
   @Field(() => ID)
   id: string;
 
-  @Field(() => ID)
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId })
   customerId: Types.ObjectId;
 
-  @Field()
+  @Field(() => LocationSchema)
   @Prop({ required: true })
   location?: LocationSchema;
 
