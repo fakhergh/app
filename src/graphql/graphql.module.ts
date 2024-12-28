@@ -11,6 +11,7 @@ import { AuthModule } from '@/modules/auth/auth.module';
 import { BookingHistoryModule } from '@/modules/booking-history/booking-history.module';
 import { CategoryModule } from '@/modules/category/category.module';
 import { CustomerModule } from '@/modules/customer/customer.module';
+import { CustomerAddressModule } from '@/modules/customer-address/customer-address.module';
 import { FeedbackModule } from '@/modules/feedback/feedback.module';
 import { NotificationModule } from '@/modules/notification/notification.module';
 import { PermissionModule } from '@/modules/permission/permission.module';
@@ -50,6 +51,7 @@ export class LoggingPlugin implements ApolloServerPlugin {
     AuthModule,
     BookingHistoryModule,
     CategoryModule,
+    CustomerAddressModule,
     CustomerModule,
     FeedbackModule,
     NotificationModule,
