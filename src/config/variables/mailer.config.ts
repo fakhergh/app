@@ -6,7 +6,7 @@ import { EnvironmentVariables } from '../config.type';
 export default registerAs<EnvironmentVariables['mailer']>('mailer', () => ({
   [MailTransport.NO_REPLY]: {
     host: process.env.NO_REPLY_MAILER_HOST,
-    port: process.env.NO_REPLY_MAILER_PORT,
+    port: parseInt(process.env.NO_REPLY_MAILER_PORT),
     secure: process.env.NO_REPLY_MAILER_SECURE === 'true',
     user: process.env.NO_REPLY_MAILER_USER,
     pass: process.env.NO_REPLY_MAILER_PASS,
@@ -14,7 +14,7 @@ export default registerAs<EnvironmentVariables['mailer']>('mailer', () => ({
   },
   [MailTransport.CONTACT]: {
     host: process.env.CONTACT_MAILER_HOST,
-    port: process.env.CONTACT_MAILER_PORT,
+    port: parseInt(process.env.CONTACT_MAILER_PORT),
     secure: process.env.CONTACT_MAILER_SECURE === 'true',
     user: process.env.CONTACT_MAILER_USER,
     pass: process.env.CONTACT_MAILER_PASS,
@@ -22,7 +22,7 @@ export default registerAs<EnvironmentVariables['mailer']>('mailer', () => ({
   },
   [MailTransport.SUPPORT]: {
     host: process.env.SUPPORT_MAILER_HOST,
-    port: process.env.SUPPORT_MAILER_PORT,
+    port: parseInt(process.env.SUPPORT_MAILER_PORT),
     secure: process.env.SUPPORT_MAILER_SECURE === 'true',
     user: process.env.SUPPORT_MAILER_USER,
     pass: process.env.SUPPORT_MAILER_PASS,

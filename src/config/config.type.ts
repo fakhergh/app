@@ -27,7 +27,7 @@ export type EnvironmentVariables = {
   mailer: {
     [k in MailTransport]: {
       host: string;
-      port: string;
+      port: number;
       secure: boolean;
       user: string;
       pass: string;

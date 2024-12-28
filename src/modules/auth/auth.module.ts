@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 
 import { EnvironmentVariables } from '../../config/config.type';
+import { MailerModule } from '../../external/mailer/mailer.module';
 import { IpInfoDataSourceModule } from '../../graphql/data-source/ip-info/ip-info.module';
 import { AdminModule } from '../admin/admin.module';
 import { CustomerModule } from '../customer/customer.module';
@@ -34,6 +35,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     IpInfoDataSourceModule,
     VerificationTokenModule,
     ConfigModule,
+    MailerModule,
   ],
   providers: [AuthResolver, AuthService, JwtStrategy],
 })

@@ -19,6 +19,7 @@ import { compareHash, hash } from '../../common/utils/bcrypt.util';
 import { decrypt, encrypt } from '../../common/utils/crypto';
 import { generateOtp } from '../../common/utils/otp';
 import { EnvironmentVariables } from '../../config/config.type';
+import { MailerService } from '../../external/mailer/mailer.service';
 import { IpInfoDatasource } from '../../graphql/data-source/ip-info/ip-info.datasource';
 import { AdminNotFoundError, ResetPasswordInvalidInputError } from '../admin/admin.error';
 import { Admin } from '../admin/admin.schema';
@@ -91,6 +92,7 @@ export class AuthResolver {
   constructor(
     private readonly authService: AuthService,
     private readonly adminService: AdminService,
+    private readonly mailerService: MailerService,
     private readonly sessionService: SessionService,
     private readonly ipInfoDatasource: IpInfoDatasource,
     private readonly customerService: CustomerService,
@@ -203,6 +205,7 @@ export class AuthResolver {
         email,
         authProvider,
       });
+      this.mailerService.sendCustomerSocialMediaRegistration(customer.email).catch(console.log);
     } else if (!customer.active) {
       throw new UnauthenticatedError('Customer is disabled');
     }
@@ -247,6 +250,8 @@ export class AuthResolver {
         email,
         authProvider,
       });
+
+      this.mailerService.sendCustomerSocialMediaRegistration(customer.email).catch(console.log);
     } else if (customer.deleted) {
       customer = await this.customerService.createCustomer({
         initialName: input.name ?? customer.initialName,
@@ -254,6 +259,7 @@ export class AuthResolver {
         email,
         authProvider,
       });
+      this.mailerService.sendCustomerSocialMediaRegistration(customer.email).catch(console.log);
     } else if (!customer.active) {
       throw new UnauthenticatedError('Customer is disabled');
     }
@@ -289,6 +295,8 @@ export class AuthResolver {
       verifyAccountToken: otp,
     });
 
+    this.mailerService.sendCustomerVerifyRegistration(customer.email, otp).catch(console.log);
+
     return { email: customer.email };
   }
 
@@ -304,6 +312,8 @@ export class AuthResolver {
     if (input.code === customer.verifyAccountToken) throw new CustomerVerificationError('Invalid verification code');
 
     customer = await this.customerService.verifyCustomer(input.email);
+
+    this.mailerService.sendCustomerRegistrationConfirmation(customer.email).catch(console.log);
 
     return true;
   }
@@ -321,6 +331,10 @@ export class AuthResolver {
     const forgotPasswordExpiresAt = DateTime.now().plus({ minutes: expiresInMinutes }).toJSDate();
 
     await this.customerService.updateForgotPasswordToken(customer._id, otp, forgotPasswordExpiresAt);
+
+    this.mailerService
+      .sendCustomerResetPassword(customer.name, customer.email, otp, expiresInMinutes)
+      .catch(console.log);
 
     return { email: customer.email };
   }
@@ -366,6 +380,9 @@ export class AuthResolver {
 
     customer = await this.customerService.updatePassword(customer._id, hashedPassword);
     customer = await this.customerService.updateResetPasswordToken(customer._id, null, null);
+
+    if (customer)
+      this.mailerService.sendCustomerResetPasswordConfirmation(customer.name, customer.email).catch(console.log);
 
     return customer !== null;
   }
@@ -526,6 +543,11 @@ export class AuthResolver {
     await this.adminService.updateAdminResetToken(admin._id, resetPasswordToken, resetPasswordExpiresAt);
 
     const resetPasswordLink = this.adminService.generateAdminResetPasswordLink(admin.email, resetPasswordToken);
+
+    this.mailerService.sendAdminResetPasswordLink(admin.email, admin.name, resetPasswordLink).catch((reason) => {
+      console.log(reason);
+      //todo:: log email error
+    });
 
     return { token: resetPasswordToken };
   }
