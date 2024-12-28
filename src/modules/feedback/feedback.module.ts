@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { CustomerModule } from '../customer/customer.module';
-import { FeedbackResolver } from '../feedback/feedback.resolver';
-import { Feedback, FeedbackSchema } from '../feedback/feedback.schema';
-import { FeedbackService } from '../feedback/feedback.service';
 import { ServiceProviderModule } from '../service-provider/service-provider.module';
+import { FeedbackResolver } from './feedback.resolver';
+import { Feedback, FeedbackSchema } from './feedback.schema';
+import { FeedbackService } from './feedback.service';
 
 @Module({
   imports: [
