@@ -10,8 +10,6 @@ import { AdminModule } from '@/modules/admin/admin.module';
 import { AuthModule } from '@/modules/auth/auth.module';
 import { CategoryModule } from '@/modules/category/category.module';
 import { CustomerModule } from '@/modules/customer/customer.module';
-import { FileModule } from '@/modules/file/file.module';
-import { MediaModule } from '@/modules/media/media.module';
 import { PermissionModule } from '@/modules/permission/permission.module';
 import { RoleModule } from '@/modules/role/role.module';
 import { ServiceProviderModule } from '@/modules/service-provider/service-provider.module';
@@ -49,8 +47,6 @@ export class LoggingPlugin implements ApolloServerPlugin {
     AuthModule,
     CategoryModule,
     CustomerModule,
-    FileModule,
-    MediaModule,
     PermissionModule,
     RoleModule,
     ServiceProviderModule,
