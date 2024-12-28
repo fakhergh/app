@@ -1,12 +1,15 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
 
 import { HasRole } from '../../common/decorators/has-role.decorator';
 import { HasPermission } from '../../common/decorators/permission.decorator';
+import { Public } from '../../common/decorators/public.decorator';
 import { CurrentUser } from '../../common/directives/current-user.directive';
 import { NodeResolver } from '../common/resolvers/node.resolver';
 import { PERMISSIONS } from '../common/types/permission.type';
 import { PaginationArgs } from '../common/types/query.type';
 import { UserType } from '../common/types/user.type';
+import { MediaService } from '../media/media.service';
 import { CustomerNotFoundError } from './customer.error';
 import { Customer } from './customer.schema';
 import { CustomerService } from './customer.service';
@@ -20,7 +23,10 @@ import {
 
 @Resolver(() => Customer)
 export class CustomerResolver extends NodeResolver<Customer> {
-  constructor(private readonly customerService: CustomerService) {
+  constructor(
+    private readonly mediaService: MediaService,
+    private readonly customerService: CustomerService,
+  ) {
     super();
   }
 
@@ -68,5 +74,15 @@ export class CustomerResolver extends NodeResolver<Customer> {
     if (!customer) throw new CustomerNotFoundError('Customer not found');
 
     return customer;
+  }
+
+  @Public()
+  @Mutation(() => Boolean)
+  async upload(@Args({ name: 'file', type: () => GraphQLUpload }) file: FileUpload) {
+    const result = await this.mediaService.upload(file);
+
+    console.log('result: ', result);
+
+    return true;
   }
 }

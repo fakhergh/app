@@ -15,6 +15,7 @@ import { CustomerModule } from '../modules/customer/customer.module';
 import { CustomerAddressModule } from '../modules/customer-address/customer-address.module';
 import { FavoriteServiceModule } from '../modules/favorite-service/favorite-service.module';
 import { FeedbackModule } from '../modules/feedback/feedback.module';
+import { MediaModule } from '../modules/media/media.module';
 import { MessageModule } from '../modules/message/message.module';
 import { NotificationModule } from '../modules/notification/notification.module';
 import { PermissionModule } from '../modules/permission/permission.module';
@@ -61,6 +62,7 @@ export class LoggingPlugin implements ApolloServerPlugin {
     CustomerModule,
     FavoriteServiceModule,
     FeedbackModule,
+    MediaModule,
     MessageModule,
     NotificationModule,
     PermissionModule,
