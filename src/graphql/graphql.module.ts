@@ -13,6 +13,7 @@ import { CategoryModule } from '../modules/category/category.module';
 import { ConversationModule } from '../modules/conversation/conversation.module';
 import { CustomerModule } from '../modules/customer/customer.module';
 import { CustomerAddressModule } from '../modules/customer-address/customer-address.module';
+import { FavoriteServiceModule } from '../modules/favorite-service/favorite-service.module';
 import { FeedbackModule } from '../modules/feedback/feedback.module';
 import { MessageModule } from '../modules/message/message.module';
 import { NotificationModule } from '../modules/notification/notification.module';
@@ -58,6 +59,7 @@ export class LoggingPlugin implements ApolloServerPlugin {
     ConversationModule,
     CustomerAddressModule,
     CustomerModule,
+    FavoriteServiceModule,
     FeedbackModule,
     MessageModule,
     NotificationModule,

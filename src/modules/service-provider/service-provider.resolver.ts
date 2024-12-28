@@ -1,4 +1,4 @@
-import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 
 import { HasRole } from '../../common/decorators/has-role.decorator';
 import { HasPermission } from '../../common/decorators/permission.decorator';
@@ -8,6 +8,7 @@ import { RequestUser } from '../common/types/auth.type';
 import { PERMISSIONS } from '../common/types/permission.type';
 import { ConnectionArgs, PaginationArgs } from '../common/types/query.type';
 import { UserType } from '../common/types/user.type';
+import { FavoriteServiceService } from '../favorite-service/favorite-service.service';
 import { ServiceProviderNotFoundError } from './service-provider.error';
 import { ServiceProvider } from './service-provider.schema';
 import { ServiceProviderService } from './service-provider.service';
@@ -23,7 +24,10 @@ import {
 
 @Resolver(() => ServiceProvider)
 export class ServiceProviderResolver extends NodeResolver<ServiceProvider> {
-  constructor(private readonly serviceProviderService: ServiceProviderService) {
+  constructor(
+    private readonly serviceProviderService: ServiceProviderService,
+    private readonly favoriteService: FavoriteServiceService,
+  ) {
     super();
   }
 
@@ -97,5 +101,12 @@ export class ServiceProviderResolver extends NodeResolver<ServiceProvider> {
     if (!serviceProvider) throw new ServiceProviderNotFoundError('Service provider not exists');
 
     return serviceProvider;
+  }
+
+  @ResolveField(() => Boolean)
+  async favorite(@Root() serviceProvider: ServiceProvider) {
+    const exists = await this.favoriteService.checkFavoriteExistenceByServiceProviderAndCustomer(serviceProvider._id);
+
+    return !!exists;
   }
 }
